@@ -6,6 +6,8 @@ class CountingsController < ApplicationController
   end
 
   def show
+    days = (Date.today - set_counting.duration).upto(Date.today).to_a
+    @rates = RateHistory.where(date: days).order(date: :desc)
     set_counting
   end
 

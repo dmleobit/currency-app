@@ -41,7 +41,7 @@ class Counting < ApplicationRecord
   
   def save_cources
     # todo check need or not
-    byebug
-    # SetHistoryRates.perform_async(duration.day - 1)
+    # byebug
+    SetHistoryRates.perform_async(duration.day - 1)
   end
 end

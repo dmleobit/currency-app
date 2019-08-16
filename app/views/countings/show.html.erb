@@ -1,5 +1,34 @@
 <p id="notice"><%= notice %></p>
 <%= @counting.attributes %>
+<br/>
 
+<table border=1>
+  <thead>
+    <tr>
+      <th>Basic currency</th>
+      <th>Target currency</th>
+      <th>Amount</th>
+      <th>Date</th>
+      <th>Course</th>
+      <th>Total Result</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rates.each do |rate| %>
+      <tr>
+        <td><%= @counting.basic_currency %></td>
+        <td><%= @counting.target_currency %></td>
+        <td><%= @counting.amount %></td>
+        <td><%= rate.date %></td>
+        <td><%= get_rate(rate, @counting) %></td>
+        <td><%= get_rate(rate, @counting, true) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+</br>
 <%= link_to 'Edit', edit_counting_path(@counting) %> |
 <%= link_to 'Back', countings_path %>
