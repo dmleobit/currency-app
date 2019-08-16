@@ -41,6 +41,9 @@ gem "omniauth-google-oauth2", "~> 0.2.1"
 # For background process
 gem "sidekiq"
 
+# For create a chart
+gem "chartkick"
+# For create a simple form
 gem 'simple_form'
 
 group :development, :test do

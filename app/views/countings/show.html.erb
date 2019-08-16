@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-<%= @counting.attributes %>
 <br/>
 
 <table border=1>
@@ -28,6 +27,7 @@
   </tbody>
 </table>
 
+<%= column_chart @rates.map{ |rate| [rate.date, get_rate(rate, @counting, true)] } %>
 
 </br>
 <%= link_to 'Edit', edit_counting_path(@counting) %> |
