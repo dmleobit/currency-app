@@ -38,6 +38,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # For auth from google
 gem "omniauth-google-oauth2", "~> 0.2.1"
 
+# For background process
+gem "sidekiq"
+
 group :development, :test do
   # For comfort work with security variables
   gem 'dotenv-rails'
