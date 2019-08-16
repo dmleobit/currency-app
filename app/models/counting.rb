@@ -5,6 +5,7 @@
 #  id              :bigint           not null, primary key
 #  amount          :float            default(0.0)
 #  basic_currency  :string
+#  duration        :integer
 #  target_currency :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -21,4 +22,5 @@ class Counting < ApplicationRecord
   validates :amount, presence: true
   validates :basic_currency, presence: true
   validates :target_currency, presence: true
+  validates :duration, presence: true
 end
