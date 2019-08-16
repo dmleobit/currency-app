@@ -3,7 +3,7 @@
 # Table name: rate_histories
 #
 #  id         :bigint           not null, primary key
-#  date       :string
+#  date       :date
 #  value      :json
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

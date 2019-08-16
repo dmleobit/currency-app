@@ -41,6 +41,8 @@ gem "omniauth-google-oauth2", "~> 0.2.1"
 # For background process
 gem "sidekiq"
 
+gem 'simple_form'
+
 group :development, :test do
   # For comfort work with security variables
   gem 'dotenv-rails'

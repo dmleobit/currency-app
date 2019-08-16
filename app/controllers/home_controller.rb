@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   end
 
   def api_data
-    data = GetApiData.new.data
+    # data = GetApiData.new.data
 
 
     render json: { wow: data }

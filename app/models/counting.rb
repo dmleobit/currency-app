@@ -34,4 +34,14 @@ class Counting < ApplicationRecord
   validates :basic_currency, presence: true
   validates :target_currency, presence: true
   validates :duration, presence: true
+
+  after_commit :save_cources
+
+  private
+  
+  def save_cources
+    # todo check need or not
+    byebug
+    # SetHistoryRates.perform_async(duration.day - 1)
+  end
 end

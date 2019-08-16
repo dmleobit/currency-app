@@ -1,4 +1,4 @@
-<%= form_with(model: counting, local: true) do |form| %>
+<%= simple_form_for @counting do |form| %>
   <% if counting.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(counting.errors.count, "error") %> prohibited this counting from being saved:</h2>
@@ -12,17 +12,10 @@
   <% end %>
 
   <div class="actions">
-    <%#= form.text_field :basic_currency %>
-    <%#= form.text_field :target_currency %>
-    <label for="basic_currency">Basic currency</label>:
-    <input id="counting_basic_currency" name="counting[basic_currency]" type="text"/><br />
-
-    <label for="target_currency">Target currency</label>:
-    <input id="counting_target_currency" name="counting[target_currency]" type="text"/><br />
-
-    <label for="amount">Amount</label>:
-    <input id="counting_amount" name="counting[amount]" type="number"/><br />
-
-    <%= form.submit %>
+    <%= form.input :amount, as: :integer %>
+    <%= form.input :basic_currency, collection: Counting::AVAILABLE_CURRENCIES %>
+    <%= form.input :target_currency, collection: Counting::AVAILABLE_CURRENCIES %>
+    <%= form.input :duration, as: :integer %>
+    <%= form.button :submit %>
   </div>
 <% end %>
