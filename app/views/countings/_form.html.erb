@@ -12,7 +12,17 @@
   <% end %>
 
   <div class="actions">
-    <%= form.text_field :title %>
+    <%#= form.text_field :basic_currency %>
+    <%#= form.text_field :target_currency %>
+    <label for="basic_currency">Basic currency</label>:
+    <input id="counting_basic_currency" name="counting[basic_currency]" type="text"/><br />
+
+    <label for="target_currency">Target currency</label>:
+    <input id="counting_target_currency" name="counting[target_currency]" type="text"/><br />
+
+    <label for="amount">Amount</label>:
+    <input id="counting_amount" name="counting[amount]" type="number"/><br />
+
     <%= form.submit %>
   </div>
 <% end %>
