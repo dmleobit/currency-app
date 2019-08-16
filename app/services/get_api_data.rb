@@ -4,8 +4,8 @@ class GetApiData
   attr_reader :response, :data
 
   def initialize
-    @from = Date.today - 20.day
-    @to = Date.today - 2.day
+    @from = Date.today - 1.day
+    @to = Date.today
     @urls = generate_urls
     # @data = get_data
     # @response = get_data
