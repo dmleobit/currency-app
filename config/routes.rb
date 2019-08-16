@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :countings
   get 'sessions/create'
   get 'sessions/destroy'
   get 'home/show'
@@ -10,9 +11,6 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create, :destroy]
   get 'home/login', to: 'home#login'
 
-  root to: "home#login"
+  root to: "countings#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
-# GoogleAuthExample::Application.routes.draw do
-  
-# end
