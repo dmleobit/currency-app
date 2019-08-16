@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
-  def show
+  skip_before_action :authentication!, only: %i(login)
+
+  def login
   end
 end

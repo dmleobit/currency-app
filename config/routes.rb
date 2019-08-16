@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
   resources :sessions, only: [:create, :destroy]
-  resource :home, only: [:show]
+  get 'home/login', to: 'home#login'
 
-  root to: "home#show"
+  root to: "home#login"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 # GoogleAuthExample::Application.routes.draw do
