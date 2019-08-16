@@ -7,7 +7,7 @@ class GetApiData
     @from = from
     @encoded_params = encode_params
     @to = Date.today
-    @response = get_data
+    @response = get_dates
     @data = build_object
     save_data
   end
@@ -29,7 +29,7 @@ class GetApiData
     [path, @encoded_params].join("?")
   end
 
-  def get_data
+  def get_dates
     (@from..@to).map do |date|
       get_data_about_day(date)
     end.compact
