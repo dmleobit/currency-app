@@ -8,6 +8,7 @@
       <th>Target currency</th>
       <th>Amount</th>
       <th>Date</th>
+      <th>Number week in year</th>
       <th>Course</th>
       <th>Change of cource with now</th>
       <th>Total Result</th>
@@ -21,6 +22,7 @@
         <td><%= @counting.target_currency %></td>
         <td><%= @counting.amount %></td>
         <td><%= rate.date %></td>
+        <td><%= rate.date.cweek %></td>
         <td><%= get_rate(rate, @counting) %></td>
         <!-- todo -->
         <% if get_change_course(@latest_rate, rate, @counting) > 0 %>
@@ -28,14 +30,14 @@
         <% else %>
           <td style='color: red'><%= get_change_course(@latest_rate, rate, @counting) %></td>
         <% end %>
-        <!-- todo. Variable must in the controller -->
+        <!-- todo Variable must in the controller -->
         <td><%= get_rate(rate, @counting, true) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= column_chart @rates.map{ |rate| [rate.date, get_rate(rate, @counting, true)] } %>
+<%= line_chart @rates.map{ |rate| [rate.date, get_rate(rate, @counting, true)] }, min: nil %>
 
 </br>
 <%= link_to 'Edit', edit_counting_path(@counting) %> |
