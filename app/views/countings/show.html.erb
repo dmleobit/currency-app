@@ -9,6 +9,7 @@
       <th>Amount</th>
       <th>Date</th>
       <th>Course</th>
+      <th>Change of cource with now</th>
       <th>Total Result</th>
     </tr>
   </thead>
@@ -21,6 +22,13 @@
         <td><%= @counting.amount %></td>
         <td><%= rate.date %></td>
         <td><%= get_rate(rate, @counting) %></td>
+        <!-- todo -->
+        <% if get_change_course(@latest_rate, rate, @counting) > 0 %>
+          <td style='color: green'><%= get_change_course(@latest_rate, rate, @counting) %></td>
+        <% else %>
+          <td style='color: red'><%= get_change_course(@latest_rate, rate, @counting) %></td>
+        <% end %>
+        <!-- todo. Variable must in the controller -->
         <td><%= get_rate(rate, @counting, true) %></td>
       </tr>
     <% end %>
