@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
   get 'home/login', to: 'home#login'
-  get 'home/api_data', to: 'home#api_data'
   root to: "countings#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

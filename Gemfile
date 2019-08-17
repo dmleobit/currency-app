@@ -46,6 +46,9 @@ gem "chartkick"
 # For create a simple form
 gem 'simple_form'
 
+# For simple services step by step
+gem 'light-service'
+
 group :development, :test do
   # For comfort work with security variables
   gem 'dotenv-rails'
