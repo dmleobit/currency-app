@@ -15,6 +15,7 @@
     </tr>
   </thead>
 
+  <%= @latest_rate %>
   <tbody>
     <% @rates.each do |rate| %>
       <tr>
@@ -23,21 +24,17 @@
         <td><%= @counting.amount %></td>
         <td><%= rate.date %></td>
         <td><%= rate.date.cweek %></td>
-        <td><%= get_rate(rate, @counting) %></td>
+        <td><%= get_rate(rate.value, @counting) %></td>
         <!-- todo -->
-        <% if get_change_course(@latest_rate, rate, @counting) > 0 %>
-          <td style='color: green'><%= get_change_course(@latest_rate, rate, @counting) %></td>
-        <% else %>
-          <td style='color: red'><%= get_change_course(@latest_rate, rate, @counting) %></td>
-        <% end %>
+        <td><%= (get_rate(rate.value, @counting) - @latest_rate).round(4) %></td>
         <!-- todo Variable must in the controller -->
-        <td><%= get_rate(rate, @counting, true) %></td>
+        <td><%= get_rate(rate.value, @counting, true) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= line_chart @rates.map{ |rate| [rate.date, get_rate(rate, @counting, true)] }, min: nil %>
+<%= line_chart @rates.map{ |rate| [rate.date, get_rate(rate.value, @counting, true)] }, min: nil %>
 
 </br>
 <%= link_to 'Edit', edit_counting_path(@counting) %> |

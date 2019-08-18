@@ -1,5 +1,6 @@
 class CountingsController < ApplicationController
   before_action :authentication!
+  include CountingsHelper
 
   def index
     @countings = current_user.countings
@@ -8,8 +9,7 @@ class CountingsController < ApplicationController
   def show
     days = (Date.today - set_counting.duration).upto(Date.today).to_a
 
-    # todo
-    @latest_rate = RateHistory.where(date: Date.today).first
+    @latest_rate = get_rate(GlobalConfig["latest_rate"]["rates"], set_counting)
     @rates = RateHistory.where(date: days).order(date: :desc)
     set_counting
   end

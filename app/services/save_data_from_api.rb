@@ -56,7 +56,7 @@ class GetRatesFromApi
       api_data = DoRequest.call(url)
 
       {date: api_data[:date],
-       value: day[:rates]}
+       value: api_data[:rates]}
     end
   end
 end
@@ -68,7 +68,7 @@ class SaveRates
   
   executed do |context|
     context.rates.each do |rate|
-      RateHistory.create(record)
+      RateHistory.create(rate)
     end
   end
 end
