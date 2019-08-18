@@ -1,40 +1,41 @@
 <p id="notice"><%= notice %></p>
 <br/>
 
+<h1>Basic currency - <%= @counting.basic_currency %></h1>
+<h1>Target currency - <%= @counting.target_currency %></h1>
+<h1>Duration - <%= @counting.duration %></h1>
+<h1>Amount currency - <%= @counting.amount %></h1>
+<h1>Course now - <%= @facade.latest_rate %></h1>
+
+<% if @facade.data_is_loading %>
+  <h1>Data is loading. Please wait and update the page</h1>
+<% end %>
+
 <table border=1>
   <thead>
     <tr>
-      <th>Basic currency</th>
-      <th>Target currency</th>
-      <th>Amount</th>
-      <th>Date</th>
       <th>Number week in year</th>
+      <th>Year</th>
       <th>Course</th>
       <th>Change of cource with now</th>
-      <th>Total Result</th>
+      <th>Total Result (money in target currency)</th>
     </tr>
   </thead>
 
-  <%= @latest_rate %>
   <tbody>
-    <% @rates.each do |rate| %>
+    <% @facade.table_data.each do |number_week, value| %>
       <tr>
-        <td><%= @counting.basic_currency %></td>
-        <td><%= @counting.target_currency %></td>
-        <td><%= @counting.amount %></td>
-        <td><%= rate.date %></td>
-        <td><%= rate.date.cweek %></td>
-        <td><%= get_rate(rate.value, @counting) %></td>
-        <!-- todo -->
-        <td><%= (get_rate(rate.value, @counting) - @latest_rate).round(4) %></td>
-        <!-- todo Variable must in the controller -->
-        <td><%= get_rate(rate.value, @counting, true) %></td>
+        <td><%= number_week[:n_week] %></td>
+        <td><%= number_week[:year] %></td>
+        <td><%= value %></td>
+        <td><%= (value - @facade.latest_rate).round(4) %></td>
+        <td><%= (value * @counting.amount).round(4) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= line_chart @rates.map{ |rate| [rate.date, get_rate(rate.value, @counting, true)] }, min: nil %>
+<%= line_chart @facade.chart_data, min: nil %>
 
 </br>
 <%= link_to 'Edit', edit_counting_path(@counting) %> |
