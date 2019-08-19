@@ -23,8 +23,8 @@
       <td><%= @counting.target_currency %></td>
       <td><%= @counting.duration %></td>
       <td><%= @counting.amount %></td>
-      <td><%= @facade.latest_rate %></td>
-      <td><%= @facade.latest_rate * @counting.amount %></td>
+      <td><%= @facade.latest_rate.round(2) %></td>
+      <td><%= (@facade.latest_rate * @counting.amount).round(2) %></td>
     </tr>
   </tbody>
 </table>
@@ -50,12 +50,12 @@
   </thead>
   <tbody>
     <% @facade.table_data.each do |number_week, value| %>
-      <tr>
+      <tr style = "background: #<%= number_week[:color] %>">
         <td scope="row"><%= number_week[:year] %></td>
         <td><%= number_week[:n_week] %></td>
-        <td><%= value %></td>
-        <td><%= (value * @counting.amount).round(4) %></td>
-        <td><%= ((@facade.latest_rate - value) * @counting.amount).round(4) %></td>
+        <td><%= value.round(2) %></td>
+        <td><%= (value * @counting.amount).round(2) %></td>
+        <td><%= ((@facade.latest_rate - value) * @counting.amount).round(2) %></td>
       </tr>
     <% end %>
   </tbody>
