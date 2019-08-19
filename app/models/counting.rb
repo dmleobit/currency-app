@@ -37,11 +37,15 @@ class Counting < ApplicationRecord
 
   after_commit :save_cources
 
+  def duration_in_days
+    duration * 7 + 6
+  end
+
   private
   
   def save_cources
     # todo check need or not
     # byebug
-    SetHistoryRates.perform_async(duration)
+    SetHistoryRates.perform_async(duration_in_days)
   end
 end

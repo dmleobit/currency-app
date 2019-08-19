@@ -9,11 +9,6 @@ class CountingsController < ApplicationController
   def show
     # todo show what data is loading
     @facade = CollectDataForShow.new(set_counting)
-
-    # days = (Date.today - set_counting.duration).upto(Date.today).to_a
-
-    # @latest_rate = get_rate(GlobalConfig["latest_rate"]["rates"], set_counting)
-    # set_counting
   end
 
   def new

@@ -19,7 +19,7 @@ class CollectDataForShow
   private
 
   def get_rates
-    days = (Date.today - @counting.duration).upto(Date.today - 1).to_a
+    days = (Date.today - @counting.duration_in_days).upto(Date.today - 1).to_a
     RateHistory.where(date: days).order(date: :desc)
   end
 

@@ -15,7 +15,7 @@
     <%= form.input :amount, as: :integer %>
     <%= form.input :basic_currency, collection: Counting::AVAILABLE_CURRENCIES %>
     <%= form.input :target_currency, collection: Counting::AVAILABLE_CURRENCIES %>
-    <%= form.input :duration, as: :integer, label: 'Duration in days (todo)' %>
+    <%= form.input :duration, as: :integer, label: 'Duration in weeks' %>
     <%= form.button :submit %>
   </div>
 <% end %>
