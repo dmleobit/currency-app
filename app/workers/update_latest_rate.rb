@@ -1,6 +1,6 @@
 class UpdateLatestRate
   include Sidekiq::Worker
-  URL = "http://data.fixer.io/api/latest?access_key=#{ENV["FIXER_KEY"]}"
+  URL = "http://data.fixer.io/api/latest?access_key=#{ENV['FIXER_KEY']}".freeze
 
   def perform
     result = DoRequest.call(URL)

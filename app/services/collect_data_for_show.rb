@@ -28,20 +28,20 @@ class CollectDataForShow
   end
 
   def get_weeks_rates
-    hash = Hash.new {|new_hash, key| new_hash[key] = []}
+    hash = Hash.new { |new_hash, key| new_hash[key] = [] }
     rates.each do |rate|
       key = { n_week: rate.date.strftime("%W").to_i, year: rate.date.year }
       hash[key] << get_rate(rate.value, counting)
     end
 
-    hash.map { |key, value| [key, value.average]}.to_h
+    hash.map { |key, value| [key, value.average] }.to_h
   end
 
   def highlight_points
     weeks_rates.max_by { |_k, rate| rate }[0][:color] = "0f0"
     weeks_rates.min_by { |_k, rate| rate }[0][:color] = "f00"
 
-    weeks_rates    
+    weeks_rates
   end
 
   def get_chart_data
@@ -50,9 +50,9 @@ class CollectDataForShow
     end.reverse
   end
 
-  def data_is_loading?    
+  def data_is_loading?
     workers = Sidekiq::Workers.new
-    workers.select do |process_id, thread_id, work|
+    workers.select do |_process_id, _thread_id, work|
       work.dig("payload", "class").eql?("SetHistoryRates")
     end.present?
   end

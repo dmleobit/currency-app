@@ -26,7 +26,7 @@ class Counting < ApplicationRecord
     NOK NZD PHP PLN
     RON RUB SEK SGD
     THB TRY USD ZAR
-  )
+  ).freeze
 
   belongs_to :user
 
@@ -40,9 +40,9 @@ class Counting < ApplicationRecord
   end
 
   private
-  
+
   def save_cources
-    # todo check need or not
+    # TODO: check need or not
     SetHistoryRates.perform_async(duration_in_days)
   end
 end

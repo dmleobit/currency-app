@@ -9,7 +9,7 @@ class DoRequest
 
     return OpenStruct.new(success?: false) unless response.code.eql?("200")
 
-    response_body = JSON.parse(response.body).with_indifferent_access   
+    response_body = JSON.parse(response.body).with_indifferent_access
     OpenStruct.new(success?: response_body["success"] ? true : false, body: response_body)
   end
 end

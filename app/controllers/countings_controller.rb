@@ -51,6 +51,6 @@ class CountingsController < ApplicationController
       :target_currency,
       :amount,
       :duration
-  )
+    )
   end
 end

@@ -10,6 +10,5 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
-  def login
-  end
+  def login; end
 end
