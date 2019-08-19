@@ -1,9 +1,9 @@
 class UpdateLatestRate
   include Sidekiq::Worker
+  URL = "http://data.fixer.io/api/latest?access_key=#{ENV["FIXER_KEY"]}"
 
   def perform
-    url = "http://data.fixer.io/api/latest?access_key=#{ENV["FIXER_KEY"]}"
-    result = DoRequest.call(url)
+    result = DoRequest.call(URL)
 
     raise "API does not respond" unless result.success?
 

@@ -1,7 +1,6 @@
 require 'net/http'
 # return OpenStruct with method success? and body
 class DoRequest
-  # todo check if status not 200
   def self.call(url)
     uri = URI.parse(url)
     http = Net::HTTP.new(uri.host, uri.port)

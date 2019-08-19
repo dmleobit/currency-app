@@ -24,7 +24,7 @@ class CollectDataForShow
     days = (counting.duration_in_days.days.ago.to_date..Date.yesterday).to_a
     RateHistory.where(date: days).order(date: :desc)
   end
-  
+
   # todo get_rate, separate in function
   def get_weeks_rates
     res = {}

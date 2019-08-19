@@ -7,7 +7,6 @@ class CountingsController < ApplicationController
   end
 
   def show
-    # todo show what data is loading
     @facade = CollectDataForShow.new(@counting)
   end
 

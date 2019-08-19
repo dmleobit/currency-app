@@ -1,0 +1,20 @@
+class SavingFromApi::GetRatesFromApi
+  extend LightService::Action
+
+  expects :dates, :url
+  promises :rates
+
+  executed do |context|
+    context.rates = context.dates.map do |date|
+      url = context.url.gsub(":date", date.to_s)
+      result = DoRequest.call(url)
+
+      context.fail_and_return!("Api does not respond") unless result.success?
+
+      {
+        date: result.body[:date],
+        value: result.body[:rates]
+      }
+    end
+  end
+end
