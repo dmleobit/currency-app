@@ -49,11 +49,15 @@ gem 'simple_form'
 # For simple services step by step
 gem 'light-service'
 
+# For bootstrap, styles and icons
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'font-awesome-rails'
 
 group :development, :test do
+  # For unit tests
+  gem 'rspec-rails', '~> 3.8'
+  gem 'figaro'
   # For comfort work with security variables
   gem 'dotenv-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
