@@ -7,10 +7,9 @@ class DoRequest
     request = Net::HTTP::Get.new(uri.request_uri)
     response = http.request(request)
 
-    return OpenStruct.new(success?: false) if response.code != "200"
+    return OpenStruct.new(success?: false) unless response.code.eql?("200")
 
-    response_body = JSON.parse(response.body).with_indifferent_access
-    
+    response_body = JSON.parse(response.body).with_indifferent_access   
     OpenStruct.new(success?: response_body["success"] ? true : false, body: response_body)
   end
 end

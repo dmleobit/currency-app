@@ -4,12 +4,14 @@ class CollectDataForShow
               :rates,
               :table_data,
               :chart_data,
+              :weeks_rates,
               :data_is_loading
 
   def initialize(counting)
     @counting = counting
     @rates = get_rates
-    @table_data = get_weeks_rates
+    @weeks_rates = get_weeks_rates
+    @table_data = highlight_points
     @chart_data = get_chart_data
     @data_is_loading = data_is_loading?
   end
@@ -25,33 +27,21 @@ class CollectDataForShow
     RateHistory.where(date: days).order(date: :desc)
   end
 
-  # todo get_rate, separate in function
   def get_weeks_rates
-    res = {}
+    hash = Hash.new {|hash, key| hash[key] = []}
     rates.each do |rate|
-      key = {n_week: rate.date.strftime("%W").to_i, year: rate.date.year}
-      # key = "#{rate.date.cweek}:#{rate.date.year}"
-      res[key] ||= []
-      res[key] << get_rate(rate.value, counting)
+      key = { n_week: rate.date.strftime("%W").to_i, year: rate.date.year }
+      hash[key] << get_rate(rate.value, counting)
     end
 
-    # average rates for a week
-    # there is not function map! for hash
-    res = res.map do |key, value|
-      [key, (value.inject(0.0){|v,sum| sum+v.to_f}/value.size).round(5)]
-    end.to_h
+    hash.map { |key, value| [key, value.average]}.to_h
+  end
 
-    max = res.max_by { |k, v| v }[0]
-    min = res.min_by { |k, v| v }[0]
+  def highlight_points
+    weeks_rates.max_by { |k, rate| rate }[0][:color] = "0f0"
+    weeks_rates.min_by { |k, rate| rate }[0][:color] = "f00"
 
-    res.map do |key, value|
-      if key == max
-        key[:color] = "0f0"
-      elsif key == min
-        key[:color] = "f00"
-      end
-      [key, value]
-    end
+    weeks_rates    
   end
 
   def get_chart_data
