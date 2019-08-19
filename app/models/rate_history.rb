@@ -10,8 +10,7 @@
 #
 
 class RateHistory < ApplicationRecord
-  validates :date, presence: true
-  validates :value, presence: true
+  validates :date, :value, presence: true
 
   validates :date, uniqueness: true
 end

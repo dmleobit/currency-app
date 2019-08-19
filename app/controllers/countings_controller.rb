@@ -1,5 +1,6 @@
 class CountingsController < ApplicationController
   before_action :authentication!
+  before_action :set_counting, only: %i(show edit update destroy)
 
   def index
     @countings = current_user.countings
@@ -7,55 +8,42 @@ class CountingsController < ApplicationController
 
   def show
     # todo show what data is loading
-    @facade = CollectDataForShow.new(set_counting)
+    @facade = CollectDataForShow.new(@counting)
   end
 
   def new
     @counting = Counting.new
   end
 
-  def edit
-    set_counting
-  end
+  def edit; end
 
   def create
     @counting = current_user.countings.new(counting_params)
 
-    respond_to do |format|
-      if @counting.save
-        format.html { redirect_to @counting, notice: 'Counting was successfully created.' }
-        format.json { render :show, status: :created, location: @counting }
-      else
-        format.html { render :new }
-        format.json { render json: @counting.errors, status: :unprocessable_entity }
-      end
+    if @counting.save
+      redirect_to @counting, notice: 'Counting was successfully created.'
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if set_counting.update(counting_params)
-        format.html { redirect_to @counting, notice: 'Counting was successfully updated.' }
-        format.json { render :show, status: :ok, location: @counting }
-      else
-        format.html { render :edit }
-        format.json { render json: @counting.errors, status: :unprocessable_entity }
-      end
+    if @counting.update(counting_params)
+      redirect_to @counting, notice: 'Counting was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
-    set_counting.destroy
-    respond_to do |format|
-      format.html { redirect_to countings_url, notice: 'Counting was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @counting.destroy
+    redirect_to countings_url, notice: 'Counting was successfully destroyed.'
   end
 
   private
 
   def set_counting
-    @counting ||= current_user.countings.find(params[:id])
+    @counting = current_user.countings.find(params[:id])
   end
 
   def counting_params

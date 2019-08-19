@@ -30,10 +30,8 @@ class Counting < ApplicationRecord
 
   belongs_to :user
 
-  validates :amount, presence: true
-  validates :basic_currency, presence: true
-  validates :target_currency, presence: true
-  validates :duration, presence: true, numericality: { less_than_or_equal_to: 50,  only_integer: true }
+  validates :amount, :basic_currency, :target_currency, :duration, presence: true
+  validates :duration, numericality: { less_than_or_equal_to: 50,  only_integer: true }
 
   after_commit :save_cources
 
@@ -45,7 +43,6 @@ class Counting < ApplicationRecord
   
   def save_cources
     # todo check need or not
-    # byebug
     SetHistoryRates.perform_async(duration_in_days)
   end
 end

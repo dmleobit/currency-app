@@ -15,6 +15,6 @@ class GlobalConfig < ApplicationRecord
   end
 
   def self.get_rates
-    GlobalConfig.first&.latest_rate.dig("rates") || {}
+    GlobalConfig.first&.latest_rate&.dig("rates") || {}
   end
 end
