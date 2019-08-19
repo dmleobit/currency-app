@@ -28,7 +28,7 @@ class CollectDataForShow
   end
 
   def get_weeks_rates
-    hash = Hash.new {|hash, key| hash[key] = []}
+    hash = Hash.new {|new_hash, key| new_hash[key] = []}
     rates.each do |rate|
       key = { n_week: rate.date.strftime("%W").to_i, year: rate.date.year }
       hash[key] << get_rate(rate.value, counting)
@@ -38,8 +38,8 @@ class CollectDataForShow
   end
 
   def highlight_points
-    weeks_rates.max_by { |k, rate| rate }[0][:color] = "0f0"
-    weeks_rates.min_by { |k, rate| rate }[0][:color] = "f00"
+    weeks_rates.max_by { |_k, rate| rate }[0][:color] = "0f0"
+    weeks_rates.min_by { |_k, rate| rate }[0][:color] = "f00"
 
     weeks_rates    
   end
