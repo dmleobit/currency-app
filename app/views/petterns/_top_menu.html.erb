@@ -6,14 +6,14 @@
   <div class="text-right">
     <% if current_user.present? %>
       <%= link_to signout_path, id: "sign_out" do %>
-        <button class='btn btn-outline-danger'>
+        <button class="btn btn-outline-danger">
           Sign out (<strong><%= current_user&.name %></strong>)
           <i class="fa fa-google-plus"></i>
         </button>
       <% end %>
     <% else %>
       <%= link_to "/auth/google_oauth2", id: "sign_in" do %>
-        <button class='btn btn-outline-success'>
+        <button class="btn btn-outline-success">
           Sign In/Sign Up
           <i class="fa fa-google-plus"></i>
         </button>

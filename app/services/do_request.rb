@@ -1,4 +1,4 @@
-require 'net/http'
+require "net/http"
 # return OpenStruct with method success? and body
 class DoRequest
   def self.call(url)

@@ -20,7 +20,7 @@ class CountingsController < ApplicationController
     @counting = current_user.countings.new(counting_params)
 
     if @counting.save
-      redirect_to @counting, notice: 'Counting was successfully created.'
+      redirect_to @counting, notice: "Counting was successfully created."
     else
       render :new
     end
@@ -28,7 +28,7 @@ class CountingsController < ApplicationController
 
   def update
     if @counting.update(counting_params)
-      redirect_to @counting, notice: 'Counting was successfully updated.'
+      redirect_to @counting, notice: "Counting was successfully updated."
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class CountingsController < ApplicationController
 
   def destroy
     @counting.destroy
-    redirect_to countings_url, notice: 'Counting was successfully destroyed.'
+    redirect_to countings_url, notice: "Counting was successfully destroyed."
   end
 
   private

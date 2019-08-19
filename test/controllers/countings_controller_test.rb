@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class CountingsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,7 +16,7 @@ class CountingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create counting" do
-    assert_difference('Counting.count') do
+    assert_difference("Counting.count") do
       post countings_url, params: { counting: {  } }
     end
 
@@ -39,7 +39,7 @@ class CountingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy counting" do
-    assert_difference('Counting.count', -1) do
+    assert_difference("Counting.count", -1) do
       delete counting_url(@counting)
     end
 

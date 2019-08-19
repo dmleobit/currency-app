@@ -9,7 +9,7 @@
 #  updated_at :datetime         not null
 #
 
-require 'test_helper'
+require "test_helper"
 
 class RateHistoryTest < ActiveSupport::TestCase
   # test "the truth" do

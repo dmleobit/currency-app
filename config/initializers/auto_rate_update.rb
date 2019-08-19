@@ -1,5 +1,5 @@
-require 'sidekiq/api'
+require "sidekiq/api"
 
 ss = Sidekiq::ScheduledSet.new
-ss.select {|retri| retri.klass == 'UpdateLatestRate' }.each(&:delete)
+ss.select {|retri| retri.klass == "UpdateLatestRate" }.each(&:delete)
 UpdateLatestRate.perform_async

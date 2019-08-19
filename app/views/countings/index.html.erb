@@ -25,7 +25,7 @@
         <td><%= counting.duration %></td>
         <td><%= link_to counting, class: "btn btn-info" do %><i class="fa fa-eye"></i><% end %></td>
         <td><%= link_to edit_counting_path(counting), class: "btn btn-warning" do %><i class="fa fa-pencil-square-o" aria-hidden="true"></i><% end %></td>
-        <td><%= link_to counting, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash" aria-hidden="true"></i><% end %></td>
+        <td><%= link_to counting, class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } do %><i class="fa fa-trash" aria-hidden="true"></i><% end %></td>
       </tr>
     <% end %>
   </tbody>
@@ -33,4 +33,4 @@
 
 <br>
 
-<%= link_to 'New Counting', new_counting_path, class: "btn btn-secondary" %>
+<%= link_to "New Counting", new_counting_path, class: "btn btn-secondary" %>

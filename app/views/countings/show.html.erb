@@ -29,9 +29,9 @@
   </tbody>
 </table>
 
-<div class='m-3'>
-  <%= link_to 'Back', countings_path, class: "btn btn-secondary" %>
-  <%= link_to 'Edit', edit_counting_path(@counting), class: "btn btn-warning" %>
+<div class="m-3">
+  <%= link_to "Back", countings_path, class: "btn btn-secondary" %>
+  <%= link_to "Edit", edit_counting_path(@counting), class: "btn btn-warning" %>
 </div>
 
 <hr>
@@ -45,7 +45,7 @@
       <th scope="col"># week in year</th>
       <th scope="col">Rate for a week</th>
       <th scope="col">The valuation of amount in base currency for the period of time</th>
-      <th scope="col">Profit/loss in comparison with today's rates</th>
+      <th scope="col">Profit/loss in comparison with today"s rates</th>
     </tr>
   </thead>
   <tbody>
@@ -64,7 +64,7 @@
 <%= line_chart @facade.chart_data, min: nil %>
 
 </br>
-<div class='m-3'>
-  <%= link_to 'Back', countings_path, class: "btn btn-secondary" %>
-  <%= link_to 'Edit', edit_counting_path(@counting), class: "btn btn-warning" %>
+<div class="m-3">
+  <%= link_to "Back", countings_path, class: "btn btn-secondary" %>
+  <%= link_to "Edit", edit_counting_path(@counting), class: "btn btn-warning" %>
 </div>
