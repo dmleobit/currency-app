@@ -1,6 +1,5 @@
 class CountingsController < ApplicationController
   before_action :authentication!
-  # include CountingsHelper
 
   def index
     @countings = current_user.countings

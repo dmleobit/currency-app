@@ -1,5 +1,5 @@
 require 'net/http'
-# return body from response
+# return OpenStruct with method success? and body
 class DoRequest
   # todo check if status not 200
   def self.call(url)
@@ -7,6 +7,11 @@ class DoRequest
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
     response = http.request(request)
-    JSON.parse(response.body).with_indifferent_access
+
+    return OpenStruct.new(success?: false) if response.code != "200"
+
+    response_body = JSON.parse(response.body).with_indifferent_access
+    
+    OpenStruct.new(success?: response_body["success"] ? true : false, body: response_body)
   end
 end

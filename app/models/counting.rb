@@ -33,7 +33,7 @@ class Counting < ApplicationRecord
   validates :amount, presence: true
   validates :basic_currency, presence: true
   validates :target_currency, presence: true
-  validates :duration, presence: true
+  validates :duration, presence: true, numericality: { less_than_or_equal_to: 50,  only_integer: true }
 
   after_commit :save_cources
 

@@ -8,7 +8,7 @@
 <h1>Course now - <%= @facade.latest_rate %></h1>
 
 <% if @facade.data_is_loading %>
-  <h1>Data is loading. Please wait and update the page</h1>
+  <h1>Data is loading. Please wait and update the page.</h1>
 <% end %>
 
 <table border=1>
@@ -17,7 +17,7 @@
       <th>Number week in year</th>
       <th>Year</th>
       <th>Course</th>
-      <th>Change of cource with now</th>
+      <th>Change of cource with now (Now - weekly)</th>
       <th>Total Result (money in target currency)</th>
     </tr>
   </thead>
@@ -28,7 +28,7 @@
         <td><%= number_week[:n_week] %></td>
         <td><%= number_week[:year] %></td>
         <td><%= value %></td>
-        <td><%= (value - @facade.latest_rate).round(4) %></td>
+        <td><%= (@facade.latest_rate - value).round(4) %></td>
         <td><%= (value * @counting.amount).round(4) %></td>
       </tr>
     <% end %>

@@ -36,7 +36,7 @@ class GetDates
   promises :dates
 
   executed do |context|
-    all_dates = context.from.upto(Date.today).to_a
+    all_dates = context.from.upto(Date.today - 1).to_a
     exists_dates = RateHistory.where(date: all_dates).pluck(:date)
     
     context.dates = all_dates - exists_dates
@@ -53,10 +53,12 @@ class GetRatesFromApi
   executed do |context|
     context.rates = context.dates.map do |date|
       url = context.url.gsub(":date", date.to_s)
-      api_data = DoRequest.call(url)
+      result = DoRequest.call(url)
 
-      {date: api_data[:date],
-       value: api_data[:rates]}
+      context.fail_and_return!("Api does not respond") unless result.success?
+
+      {date: result.body[:date],
+       value: result.body[:rates]}
     end
   end
 end
