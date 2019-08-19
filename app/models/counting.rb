@@ -36,7 +36,7 @@ class Counting < ApplicationRecord
   after_commit :save_cources
 
   def duration_in_days
-    duration * 7 + 6
+    duration * 7
   end
 
   private
