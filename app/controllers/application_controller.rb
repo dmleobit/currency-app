@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def authentication!
     if current_user.blank?
-      redirect_to home_login_path
+      redirect_to sessions_login_path
     end
   end
 
