@@ -51,6 +51,7 @@ gem 'light-service'
 
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.3.1'
+gem 'font-awesome-rails'
 
 group :development, :test do
   # For comfort work with security variables

@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Currency app</a>
+
+  <div class="navbar-nav mr-auto text-center"></div>
+
+  <div class="text-right">
+    <% if current_user.present? %>
+      <%= link_to signout_path, id: "sign_out" do %>
+        <button class='btn btn-outline-danger'>
+          Sign out (<strong><%= current_user&.name %></strong>)
+          <i class="fa fa-google-plus"></i>
+        </button>
+      <% end %>
+    <% else %>
+      <%= link_to "/auth/google_oauth2", id: "sign_in" do %>
+        <button class='btn btn-outline-success'>
+          Sign In/Sign Up
+          <i class="fa fa-google-plus"></i>
+        </button>
+      <% end %>
+    <% end %>
+  </div>
+</nav>
