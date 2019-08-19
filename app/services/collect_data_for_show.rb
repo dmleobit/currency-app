@@ -1,6 +1,11 @@
 class CollectDataForShow
   include CountingsHelper
-  attr_reader :counting, :rates, :latest_rate, :table_data, :chart_data, :data_is_loading
+  attr_reader :counting,
+              :rates,
+              :latest_rate,
+              :table_data,
+              :chart_data,
+              :data_is_loading
 
   def initialize(counting)
     @counting = counting
@@ -34,11 +39,13 @@ class CollectDataForShow
   def get_chart_data
     @table_data.map do |key, value|
       ["#{key[:year]} year. #{key[:n_week]} week", (value * @counting.amount).round(4)]
-    end
+    end.reverse
   end
 
-  def data_is_loading?
-    ss = Sidekiq::ScheduledSet.new
-    ss.count {|retri| retri.klass == 'SetHistoryRates' }.positive?
+  def data_is_loading?    
+    workers = Sidekiq::Workers.new
+    workers.select do |process_id, thread_id, work|
+      work.dig("payload", "class").eql?("SetHistoryRates")
+    end.present?
   end
 end
