@@ -18,3 +18,8 @@
 // For create chart
 //= require chartkick
 //= require Chart.bundle
+
+// For bootstrap
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
