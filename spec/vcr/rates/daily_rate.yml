@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://data.fixer.io/api/2019-07-19?access_key=<%= ENV['FIXER_KEY'] %>&symbols=AUD,BGN,BRL,CAD,CHF,CNY,CZK,DKK,EUR,GBP,HKD,HRK,HUF,IDR,ILS,INR,JPY,KRW,MXN,MYR,NOK,NZD,PHP,PLN,RON,RUB,SEK,SGD,THB,TRY,USD,ZAR
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 20 Aug 2019 16:19:44 GMT
+      Content-Type:
+      - application/json; Charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      X-Apilayer-Transaction-Id:
+      - 757f8444-5e8e-4465-98e5-1c2be7689366
+      Access-Control-Allow-Methods:
+      - GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS
+      Last-Modified:
+      - Tue, 16 Jul 2019 23:59:59 GMT
+      Etag:
+      - 852067cca8d0e5775079f20718993623
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Request-Time:
+      - '0.017'
+    body:
+      encoding: UTF-8
+      string: '{"success":true,"timestamp":1563321599,"historical":true,"base":"EUR","date":"2019-07-16","rates":{"AUD":1.598137,"BGN":1.955915,"BRL":4.225429,"CAD":1.467289,"CHF":1.107741,"CNY":7.709631,"CZK":25.589013,"DKK":7.467515,"EUR":1,"GBP":0.903393,"HKD":8.765278,"HRK":7.390425,"HUF":326.086868,"IDR":15710.664838,"ILS":3.977309,"INR":77.25549,"JPY":121.319436,"KRW":1321.74762,"MXN":21.41987,"MYR":4.605618,"NOK":9.613971,"NZD":1.673095,"PHP":57.119547,"PLN":4.256539,"RON":4.72985,"RUB":70.633582,"SEK":10.528861,"SGD":1.522683,"THB":34.677785,"TRY":6.407823,"USD":1.121189,"ZAR":15.647657}}'
+    http_version: 
+  recorded_at: Tue, 20 Aug 2019 16:19:44 GMT
+recorded_with: VCR 5.0.0

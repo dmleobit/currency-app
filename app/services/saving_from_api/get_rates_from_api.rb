@@ -12,7 +12,7 @@ class SavingFromApi::GetRatesFromApi
       context.fail_and_return!("Api does not respond") unless result.success?
 
       {
-        date: result.body[:date],
+        date: date,
         value: result.body[:rates]
       }
     end
