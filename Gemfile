@@ -54,7 +54,12 @@ gem "bootstrap", "~> 4.3.1"
 gem "font-awesome-rails"
 gem "jquery-rails"
 
+# For generate smth random
+gem "faker"
+
 group :development, :test do
+  gem "database_cleaner"
+  gem "factory_bot_rails"
   gem "figaro"
   gem "rubocop"
   # For unit tests
