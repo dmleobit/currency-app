@@ -33,7 +33,7 @@ class Counting < ApplicationRecord
   validates :amount, :basic_currency, :target_currency, :duration, presence: true
   validates :duration, numericality: { less_than_or_equal_to: 50,  only_integer: true }
 
-  after_commit :save_cources
+  after_commit :save_rates
 
   def duration_in_days
     duration * 7
@@ -41,7 +41,7 @@ class Counting < ApplicationRecord
 
   private
 
-  def save_cources
+  def save_rates
     # TODO: check need or not
     SetHistoryRates.perform_async(duration_in_days)
   end

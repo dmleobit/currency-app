@@ -14,8 +14,6 @@ class CountingsController < ApplicationController
     @counting = Counting.new
   end
 
-  def edit; end
-
   def create
     @counting = current_user.countings.new(counting_params)
 

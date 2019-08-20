@@ -3,9 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def authentication!
-    if current_user.blank?
-      redirect_to sessions_login_path
-    end
+    redirect_to sessions_login_path if current_user.blank?
   end
 
   def current_user
