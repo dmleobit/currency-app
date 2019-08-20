@@ -7,7 +7,7 @@ class UpdateLatestRate
 
     raise "API does not respond" unless result.success?
 
-    duration = (RateHistory.order(:date).last.date - Date.today).to_i.abs
+    duration = (RateHistory.order(:date).last.date - Date.yesterday).to_i.abs
     SetHistoryRates.perform_async(duration) if duration.positive?
 
     GlobalConfig.first.update(latest_rate: result.body)

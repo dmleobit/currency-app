@@ -5,7 +5,7 @@ class SavingFromApi::GetDates
   promises :dates
 
   executed do |context|
-    all_dates = context.from.upto(Date.today - 1).to_a
+    all_dates = context.from.upto(Date.yesterday).to_a
     exists_dates = RateHistory.where(date: all_dates).pluck(:date)
 
     context.dates = all_dates - exists_dates
