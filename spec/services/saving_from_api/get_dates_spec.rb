@@ -6,7 +6,7 @@ RSpec.describe SavingFromApi::GetDates do
     LightService::Testing::ContextFactory
       .make_from(SaveDataFromApi)
       .for(described_class)
-      .with(Date.today - 3.week)
+      .with(3.week.from_now.to_date)
   end
 
   it "works like it should" do

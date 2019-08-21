@@ -1,12 +1,10 @@
 FactoryBot.define do
-  factory :rate_history do
-    date  { RateHistory.order(:date).first&.date&.yesterday || Date.today }
-    value { rates }
-  end
-end
+  sequence(:date) { |index| index.days.ago.to_date }
 
-def rates
-  Counting::AVAILABLE_CURRENCIES.map do |currency|
-    [currency, rand]
-  end.to_h
+  factory :rate_history do
+    date  { generate(:date) }
+    value do 
+      Counting::AVAILABLE_CURRENCIES.map { |currency| [currency, rand] }.to_h
+    end
+  end
 end
