@@ -1,2 +1,2 @@
 GlobalConfig.create!
-SaveDataFromApi.call(Date.today - 365)
+SaveDataFromApi.call(Date.current - 365)

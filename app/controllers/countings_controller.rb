@@ -16,20 +16,15 @@ class CountingsController < ApplicationController
 
   def create
     @counting = current_user.countings.new(counting_params)
+    return render :new unless @counting.save
 
-    if @counting.save
-      redirect_to @counting, notice: "Counting was successfully created."
-    else
-      render :new
-    end
+    redirect_to @counting, notice: "Counting was successfully created."
   end
 
   def update
-    if @counting.update(counting_params)
-      redirect_to @counting, notice: "Counting was successfully updated."
-    else
-      render :edit
-    end
+    return render :edit unless @counting.update(counting_params)
+
+    redirect_to @counting, notice: "Counting was successfully updated."
   end
 
   def destroy
