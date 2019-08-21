@@ -1,5 +1,3 @@
-require "net/http"
-
 # return OpenStruct with method success? and body
 class PerformApiCall
   SUCCESS_CODE = 200
