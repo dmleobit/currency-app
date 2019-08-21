@@ -1,5 +1,4 @@
 class CollectDataForShow
-  include CountingsHelper
   attr_reader :counting,
               :rates,
               :table_data,
@@ -9,29 +8,29 @@ class CollectDataForShow
 
   def initialize(counting)
     @counting = counting
-    @rates = get_rates
-    @weeks_rates = get_weeks_rates
+    @rates = rates_from_db
+    @weeks_rates = build_weeks_rates
     @table_data = highlight_points
-    @chart_data = get_chart_data
+    @chart_data = build_chart_data
     @data_is_loading = data_is_loading?
   end
 
   def latest_rate
-    @latest_rate ||= get_rate(GlobalConfig["latest_rate"]["rates"], counting)
+    @latest_rate ||= count_rate(GlobalConfig["latest_rate"]["rates"])
   end
 
   private
 
-  def get_rates
+  def rates_from_db
     days = (counting.duration_in_days.days.ago.to_date..Date.yesterday).to_a
     RateHistory.where(date: days).order(date: :desc)
   end
 
-  def get_weeks_rates
+  def build_weeks_rates
     hash = Hash.new { |new_hash, key| new_hash[key] = [] }
     rates.each do |rate|
       key = { n_week: rate.date.strftime("%W").to_i, year: rate.date.year }
-      hash[key] << get_rate(rate.value, counting)
+      hash[key] << count_rate(rate.value)
     end
 
     hash.map { |key, value| [key, value.average] }.to_h
@@ -44,7 +43,7 @@ class CollectDataForShow
     weeks_rates
   end
 
-  def get_chart_data
+  def build_chart_data
     table_data.map do |key, value|
       ["#{key[:year]} year. #{key[:n_week]} week", (value * counting.amount).round(4)]
     end.reverse
@@ -55,5 +54,9 @@ class CollectDataForShow
     workers.select do |_process_id, _thread_id, work|
       work.dig("payload", "class").eql?("SetHistoryRates")
     end.present?
+  end
+
+  def count_rate(rate)
+    rate[counting.target_currency] / rate[counting.basic_currency]
   end
 end

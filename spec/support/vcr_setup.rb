@@ -7,9 +7,9 @@ VCR.configure do |c|
 
     regexp_trail_id = /\d{4}\-\d{2}\-\d{2}/
 
-    if uri1.match(regexp_trail_id)
-      r1_without_id = uri1.gsub(regexp_trail_id, "")
-      r2_without_id = uri2.gsub(regexp_trail_id, "")
+    if uri_1.match(regexp_trail_id)
+      r1_without_id = uri_1.gsub(regexp_trail_id, "")
+      r2_without_id = uri_2.gsub(regexp_trail_id, "")
       uri_1.match(regexp_trail_id) && uri_2.match(regexp_trail_id) && r1_without_id.eql?(r2_without_id)
     else
       uri_1.eql?(uri_2)

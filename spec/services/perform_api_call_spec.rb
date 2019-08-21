@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe DoRequest, type: :service do
-  subject { service.call }
+RSpec.describe PerformApiCall, type: :service do
+  subject { service.call(url) }
 
   let(:url) { "http://data.fixer.io/api/latest?access_key=#{ENV['FIXER_KEY']}" }
 

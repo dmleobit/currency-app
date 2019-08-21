@@ -24,7 +24,7 @@
       <td><%= @counting.duration %></td>
       <td><%= @counting.amount %></td>
       <td><%= @facade.latest_rate.round(2) %></td>
-      <td><%= (@facade.latest_rate * @counting.amount).round(2) %></td>
+      <td><%= count_sum_by_rate(@facade.latest_rate, @counting.amount) %></td>
     </tr>
   </tbody>
 </table>
@@ -49,13 +49,13 @@
     </tr>
   </thead>
   <tbody>
-    <% @facade.table_data.each do |number_week, value| %>
+    <% @facade.table_data.each do |number_week, rate| %>
       <tr style = "background: #<%= number_week[:color] %>">
         <td scope="row"><%= number_week[:year] %></td>
         <td><%= number_week[:n_week] %></td>
-        <td><%= value.round(2) %></td>
-        <td><%= (value * @counting.amount).round(2) %></td>
-        <td><%= ((@facade.latest_rate - value) * @counting.amount).round(2) %></td>
+        <td><%= rate.round(2) %></td>
+        <td><%= count_sum_by_rate(rate, @counting.amount) %></td>
+        <td><%= profit_sum(@facade.latest_rate, rate, @counting.amount) %></td>
       </tr>
     <% end %>
   </tbody>
