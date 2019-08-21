@@ -5,13 +5,12 @@ class UpdateLatestRate
     new.call
   end
 
-  def initialize
-  end
+  def initialize; end
 
   def call
     # return unless check_latest_update
 
-    call_API!
+    call_api!
     update_rate_history!
     update_latest_rate!
   end
@@ -26,7 +25,7 @@ class UpdateLatestRate
     time_latest_update < time_hour_ago
   end
 
-  def call_API!
+  def call_api!
     @result = PerformApiCall.call(URL)
     raise "API does not respond" unless @result.success?
   end
