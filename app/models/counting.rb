@@ -43,6 +43,6 @@ class Counting < ApplicationRecord
 
   def save_rates
     # TODO: check need or not
-    SetHistoryRates.perform_async(duration_in_days)
+    SetHistoryRatesWorker.perform_async(duration_in_days)
   end
 end

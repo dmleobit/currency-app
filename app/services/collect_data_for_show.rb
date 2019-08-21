@@ -52,7 +52,7 @@ class CollectDataForShow
   def data_is_loading?
     workers = Sidekiq::Workers.new
     workers.select do |_process_id, _thread_id, work|
-      work.dig("payload", "class").eql?("SetHistoryRates")
+      work.dig("payload", "class").eql?("SetHistoryRatesWorker")
     end.present?
   end
 

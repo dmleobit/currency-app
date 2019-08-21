@@ -1,4 +1,4 @@
-class SetHistoryRates
+class SetHistoryRatesWorker
   include Sidekiq::Worker
 
   def perform(duration)
