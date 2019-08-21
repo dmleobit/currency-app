@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+<br/>
+
+<% if @facade.data_is_loading %>
+  <h1>Data is loading. Please wait and update the page.</h1>
+<% end %>
+
+<table class="table table-dark">
+  <caption>Basic info</caption>
+  <thead>
+    <tr>
+      <th scope="col">Basic currency</th>
+      <th scope="col">Target currency</th>
+      <th scope="col">Duration</th>
+      <th scope="col">Amount currency</th>
+      <th scope="col">Rate now</th>
+      <th scope="col">Latest amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><%= @counting.basic_currency %></th>
+      <td><%= @counting.target_currency %></td>
+      <td><%= @counting.duration %></td>
+      <td><%= @counting.amount %></td>
+      <td><%= @facade.latest_rate.round(2) %></td>
+      <td><%= count_sum_by_rate(@facade.latest_rate, @counting.amount) %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="m-3">
+  <%= link_to "Back", countings_path, class: "btn btn-secondary" %>
+  <%= link_to "Edit", edit_counting_path(@counting), class: "btn btn-warning" %>
+</div>
+
+<hr>
+<br><br><br><br>
+
+<table class="table table-hover text-center">
+  <caption>List of rates</caption>
+  <thead>
+    <tr>
+      <th scope="col">Year</th>
+      <th scope="col"># week in year</th>
+      <th scope="col">Rate for a week</th>
+      <th scope="col">The valuation of amount in base currency for the period of time</th>
+      <th scope="col">Profit/loss in comparison with today"s rates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @facade.table_data.each do |number_week, rate| %>
+      <tr style = "background: #<%= number_week[:color] %>">
+        <td scope="row"><%= number_week[:year] %></td>
+        <td><%= number_week[:n_week] %></td>
+        <td><%= rate.round(2) %></td>
+        <td><%= count_sum_by_rate(rate, @counting.amount) %></td>
+        <td><%= profit_sum(@facade.latest_rate, rate, @counting.amount) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= line_chart @facade.chart_data, min: nil %>
+
+</br>
+<div class="m-3">
+  <%= link_to "Back", countings_path, class: "btn btn-secondary" %>
+  <%= link_to "Edit", edit_counting_path(@counting), class: "btn btn-warning" %>
+</div>

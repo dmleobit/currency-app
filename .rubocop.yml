@@ -1,0 +1,76 @@
+AllCops:
+  Exclude:
+    - "vendor/**/*"
+    - "spec/fixtures/**/*"
+    - "tmp/**/*"
+    - "db/*"
+    - "lib/**/*"
+    - "slate/*"
+    - "bin/*"
+    - "web/**/*"
+    - ".rubocop.yml"
+    - "config/**/*"
+    - "app/controllers/devise_token_auth/*"
+    - "spec/rails_helper.rb"
+    - "spec/spec_helper.rb"
+    - "test/**/*"
+    - "spec/vcr/**/*"
+  TargetRubyVersion: 2.4
+CaseIndentation:
+  EnforcedStyle: case
+  IndentOneStep: true
+ClassAndModuleChildren:
+  Enabled: false
+ClassLength:
+  Max: 200
+Lint/Loop:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Metrics/LineLength:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/ParameterLists:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+Layout/AlignHash:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Style/RescueStandardError:
+  Enabled: false
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: "()"
+    "%i": "()"
+    "%I": "()"
+    "%r": "{}"
+    "%w": "()"
+    "%W": "()"
+Layout/IndentFirstArrayElement:
+  Enabled: false
+Style/Next:
+  Enabled: false
+Style/RaiseArgs:
+  EnforcedStyle: compact
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+# TODO: remove this option
+Naming/AccessorMethodName:
+  Enabled: false
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
