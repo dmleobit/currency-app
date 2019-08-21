@@ -8,7 +8,7 @@ class UpdateLatestRate
   def initialize; end
 
   def call
-    # return unless check_latest_update
+    return unless check_latest_update
 
     call_api!
     update_rate_history!
