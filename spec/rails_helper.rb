@@ -7,6 +7,7 @@ require "rspec/rails"
 require "support/factory_bot"
 require "support/vcr_setup"
 require "webmock/rspec"
+require "support/data_base_cleaner"
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
