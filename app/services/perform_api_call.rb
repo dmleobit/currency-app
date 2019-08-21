@@ -23,7 +23,7 @@ class PerformApiCall
     uri = URI.parse(@url)
     net_http_object = Net::HTTP.new(uri.host, uri.port)
     request_object = Net::HTTP::Get.new(uri.request_uri)
-    
+
     @response = net_http_object.request(request_object)
   end
 

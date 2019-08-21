@@ -1,6 +1,6 @@
 module CountingsHelper
   def count_sum_by_rate(rate, amount)
-    (rate * amount).round(2)    
+    (rate * amount).round(2)
   end
 
   # profit/loss in comparison with latest_rate
