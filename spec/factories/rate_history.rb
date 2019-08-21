@@ -3,7 +3,7 @@ FactoryBot.define do
 
   factory :rate_history do
     date  { generate(:date) }
-    value do 
+    value do
       Counting::AVAILABLE_CURRENCIES.map { |currency| [currency, rand] }.to_h
     end
   end
