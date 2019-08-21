@@ -36,6 +36,6 @@ class UpdateLatestRate
   end
 
   def update_latest_rate!
-    GlobalConfig.first.update(latest_rate: result.body)
+    GlobalConfig.first.update(latest_rate: @result.body)
   end
 end
